@@ -16,5 +16,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//redirect from / to films
+Route::get('/', function () {  
+    return redirect('/films'); 
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('films/{id}', 'FilmsController@show');
+Route::resource('backend/filmgenre', 'GenreController');
+Route::resource('backend', 'FilmsController');
+Route::resource('comment', 'CommentController');
+
+
+
+// /films to access data from backend api http://localhost/test_setup/backend
+Route::get('/films', 'FilmsController@index')->name('Films');
